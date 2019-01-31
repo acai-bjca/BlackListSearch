@@ -1,1 +1,1 @@
-# mvn-archetype-generate--B--DgroupId-edu.eci--DartifactId-BlackListSearch
+https://github.com/acai-bjca/BlackListSearch.git
