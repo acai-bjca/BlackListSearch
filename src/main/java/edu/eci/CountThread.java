@@ -4,7 +4,6 @@ package edu.eci;
  *
  * @author hcadavid
  */
-
 public class CountThread extends Thread {
 	public int a;
 	public int b;
@@ -14,10 +13,6 @@ public class CountThread extends Thread {
 		this.a = a;
 		this.b = b;
 		System.out.println("my thread created" + this);
-		
-		
-		//run();
-		start();
 	}
 	
 

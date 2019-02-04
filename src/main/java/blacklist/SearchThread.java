@@ -1,7 +1,5 @@
 package blacklist;
 
-import java.util.LinkedList;
-
 public class SearchThread extends Thread {
 	public int iniSegmento;
 	public int finSegmento;
@@ -24,16 +22,12 @@ public class SearchThread extends Thread {
 
 	public void run() {			
 		for (int i=iniSegmento; i<=finSegmento && validator.getOcurrencesCount()<BLACK_LIST_ALARM_COUNT; i++) {
-			System.out.println(iniSegmento+" - "+finSegmento +" - " +i);
 			validator.setCheckedListsCount();          
-            if (skds.isInBlackListServer(i, ipaddress)){ 
-            	System.out.println("ESTÁ en Thread "+numHilo);
+            if (skds.isInBlackListServer(i, ipaddress)){
             	validator.setBlackListOcurrences(i);              
                 validator.setOcurrencesCount();
             }
         }
 	}
-	
-	
 	
 }

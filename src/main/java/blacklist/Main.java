@@ -5,8 +5,8 @@
  */
 package blacklist;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.lang.Runtime;
 
 /**
  *
@@ -17,7 +17,9 @@ public class Main {
     public static void main(String a[]){
         HostBlackListsValidator hblv=new HostBlackListsValidator();
 		try {
-			List<Integer> blackListOcurrences = hblv.checkHost("202.24.34.55", 100);
+			int procesadores = Runtime.getRuntime().availableProcessors();
+			System.out.println(procesadores);
+			List<Integer> blackListOcurrences = hblv.checkHost("202.24.34.55", 200);
 			//200.24.34.55
 			//202.24.34.55 No confiable
 			//212.24.24.55 Confiable

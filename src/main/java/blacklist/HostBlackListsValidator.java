@@ -5,13 +5,10 @@
  */
 package blacklist;
 
-import java.awt.peer.SystemTrayPeer;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import edu.eci.CountThread;
 
 /**
  *
@@ -40,14 +37,13 @@ public class HostBlackListsValidator {
      */
     public List<Integer> checkHost(String ipaddress, int cantidadThread) throws InterruptedException{
         skds = HostBlacklistsDataSourceFacade.getInstance();
-        blackListOcurrences = new LinkedList<>();
+        blackListOcurrences = new LinkedList();
         this.ipaddress = ipaddress;
         
         int cantServers = skds.getRegisteredServersCount();
         cantSer = cantServers;
         int listasPorThread = cantServers / cantidadThread; 
         int segmento = 0;
-        SearchThread hilo;
         SearchThread[] hilos = new SearchThread[cantidadThread];
         for(int h = 0; h<cantidadThread; h++) {
         	if(h == cantidadThread-1) {
@@ -60,10 +56,11 @@ public class HostBlackListsValidator {
         	segmento += listasPorThread;        	
         }
         
+        //Primero creamos todos los hilos y ejecutamos su método run, de manera que corran en paralelo.
     	for (SearchThread h : hilos) {
     		h.start();
     	}
-    	
+    	//A todos los hilos ejecutamos el método join, para que el hilo principal no termine si algún hilo falta por terminar.
     	for (SearchThread h : hilos) {
     		h.join();
     	}
@@ -82,19 +79,19 @@ public class HostBlackListsValidator {
 
     private static final Logger LOG = Logger.getLogger(HostBlackListsValidator.class.getName());
     
-    public int getOcurrencesCount(){
+    public synchronized int getOcurrencesCount(){
     	return ocurrencesCount;
 	}
     
-    public void setOcurrencesCount(){    	
+    public synchronized void setOcurrencesCount(){    	
     	ocurrencesCount++;
 	}
     
-    public void setCheckedListsCount(){
+    public synchronized void setCheckedListsCount(){
     	checkedListsCount++;
 	}
 	
-	public void setBlackListOcurrences(Integer i){
+	public synchronized void setBlackListOcurrences(Integer i){
 		blackListOcurrences.add(i);
 	}
 	
