@@ -8,14 +8,14 @@
 	- Sin hilos:
 
 
-		![](/src/main/resources/ResultadoSinThreads.PNG)
+		![](/src/main/resources/ResultadoSinThreads.png)
 	- Con hilos:
 
 
-		![](/src/main/resources/resultadoConHilos1.PNG)
+		![](/src/main/resources/resultadoConHilos1.png)
 - Probamos con la dirección del host **"212.24.24.55"** y verificar que el programa modificado con Threads, siga funcionando correctamente y resulte que la dirección ip del host es confiable.
 
-	![](/src/main/resources/resultadoConHilos2.PNG)
+	![](/src/main/resources/resultadoConHilos2.png)
 
 ## Part III - Discussion
 - Para minimizar el número de consultas que se hacen a los servidores, añadimos a la ejecución de los Thread (en el método run()), una condición que hace que en cualquiera de ellos en estado de ejecución termine el proceso de búsqueda en las listas negras, si en sus segmentos ya se han encontrado 5 o más ocurrencias del host dado.
@@ -110,7 +110,7 @@ public class SearchThread extends Thread {
 	|         50        |  0,01  |
 	|        100        |  0,01  |
 	
-	![](/src/main/resources/nucleosVsTiempo.PNG)
+	![](/src/main/resources/nucleosVsTiempo.png)
 
 - Hay un límite cuando la fracción de mejora se acerca al 100%, es decir que lo que el tiempo que se mejora es casi la porción total del programa. Al mismo tiempo, entre mas se aumente el número de procesadores (en este caso de threads), entonces también va a existir un límite al infinito, pues la fracción se reduce a 0. Es por esta razón, que no hay mucha diferencia entre el rendimiento entre 200 threads y 500 threads, pues según la **Ley de Amdahl** ambos valores por ser tan grandes, hacen que el resultado de la "aceleración" tienda al infinito.
 - Según la tabla y gráfica anteriores, podemos ver que en nuestro caso se usaron primero 4 threads (pues es procesador de 4 núcleos) y tuvo un tiempo de ejecución mayor que cuando duplicamos la cantidad de threads. Aunque el cambio en el tiempo fue pequeño, se logró ver que mejoró y encontró el host en las listas negras más rápido.
