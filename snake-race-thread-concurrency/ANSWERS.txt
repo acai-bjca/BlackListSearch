@@ -1,0 +1,12 @@
+1. Posibles condiciones de carrera:
+	- Cuando dos serpientes compiten por llegar a la misma celda, ya sea que contenga comida, barrera, 
+	un poder (que esté llena o que se encuentren dos serpientes) o esté vacía.
+2. Uso incorrecto de colecciones:
+	- Al aumentar la velocidad de las serpientes y ejecutar varias veces el programa, se pudo encontrar dos excepciones:
+	La primera fue java.util.ConcurrentModificationException y la segunda java.lang.NullPointerException. La primera excepción surgió por que
+	parece que se accedió a la linkedList (el cuerpo de la serpiente) de manera simultánea.
+	Algo para ayudar a esto es: 
+		List list = Collections.synchronizedList(new ArrayList());
+		List list = Collections.synchronizedList(new LinkedList());
+3. 
+	

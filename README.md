@@ -115,3 +115,17 @@ public class SearchThread extends Thread {
 - Hay un límite cuando la fracción de mejora se acerca al 100%, es decir que lo que el tiempo que se mejora es casi la porción total del programa. Al mismo tiempo, entre mas se aumente el número de procesadores (en este caso de threads), entonces también va a existir un límite al infinito, pues la fracción se reduce a 0. Es por esta razón, que no hay mucha diferencia entre el rendimiento entre 200 threads y 500 threads, pues según la **Ley de Amdahl** ambos valores por ser tan grandes, hacen que el resultado de la "aceleración" tienda al infinito.
 - Según la tabla y gráfica anteriores, podemos ver que en nuestro caso se usaron primero 4 threads (pues es procesador de 4 núcleos) y tuvo un tiempo de ejecución mayor que cuando duplicamos la cantidad de threads. Aunque el cambio en el tiempo fue pequeño, se logró ver que mejoró y encontró el host en las listas negras más rápido.
 - La Ley de Amdahl es mucho mejor porque es mejor tener varias máquinas trabajando paralelamente que una máquina trabajando concurrentemente, esto es porque la cantidad de hilos presentes en varias máquinas puede ser menor, por lo que el límite de la aceleración no tendería al infinito y el rendimiento sería mayor, por el contrario si en una sola máquina tengo muchos hilos y los aumento el rendimiento va a disminuir.
+
+# Snake Race
+## Parte 3
+1. Analizamos el código de cómo se mueven las serpientes de manera automática y encontramos que para realizar esto se crean nuevas celdas con las nuevas posiciones de la cabeza y el cuerpo de las serpientes; si no se presionan los botones del mouse, entonces se generan movimientos aleatorios con ayuda de la clase enum **Direction**, pero si se presiona algún botón, la ubicación de la celda donde se presionó se convierte en un objetivo y la serpiente se dirigirá hacia este.
+
+	![](/snake-race-thread-concurrency/src/resources/funcionamientoSnakes1.PNG)
+
+	![](/snake-race-thread-concurrency/src/resources/funcionamientoSnakes2.png)
+2. Las siguientes son imágenes que representan las excepciones encontradas en el programa por problemas de concurrencia con la variable **snakeBody** que es una LinkedList.
+
+	![](/snake-race-thread-concurrency/src/resources/excepcionEncontrada.PNG)
+
+	![](/snake-race-thread-concurrency/src/resources/excepcionEncontrada2.PNG)
+3.
