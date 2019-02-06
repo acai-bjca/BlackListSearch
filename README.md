@@ -8,14 +8,14 @@
 	- Sin hilos:
 
 
-		![](/src/main/resources/ResultadoSinThreads.png)
+		![](/black-list-search/src/main/resources/ResultadoSinThreads.png)
 	- Con hilos:
 
 
-		![](/src/main/resources/resultadoConHilos1.png)
+		![](/black-list-search/src/main/resources/resultadoConHilos1.png)
 - Probamos con la dirección del host **"212.24.24.55"** y verificar que el programa modificado con Threads, siga funcionando correctamente y resulte que la dirección ip del host es confiable.
 
-	![](/src/main/resources/resultadoConHilos2.png)
+	![](/black-list-search/src/main/resources/resultadoConHilos2.png)
 
 ## Part III - Discussion
 - Para minimizar el número de consultas que se hacen a los servidores, añadimos a la ejecución de los Thread (en el método run()), una condición que hace que en cualquiera de ellos en estado de ejecución termine el proceso de búsqueda en las listas negras, si en sus segmentos ya se han encontrado 5 o más ocurrencias del host dado.
@@ -58,47 +58,47 @@ public class SearchThread extends Thread {
 
 - Aquí lo que hacemos es traer de la case validadora, la cantidad de ocurrencias que se han encontrado y mirar si son menos de 5, para continuar o detener la búsqueda. En la imagen se ve, que ya no se buscan en todas las **80.000 listas negras** que hay, sino que el número se redujo.
 
-	![](/src/main/resources/ResultadoOptimizado.PNG)
+	![](/black-list-search/src/main/resources/ResultadoOptimizado.PNG)
 ## Part IV - Performance Evaluation
 1. Un sólo Thread.
 
 	**Tiempo de ejecución:** 1m:51:06
 	
-	![](/src/main/resources/UnSoloThread.PNG)
+	![](/black-list-search/src/main/resources/UnSoloThread.PNG)
 
-	![](/src/main/resources/JVisualUnSoloThread.PNG)
+	![](/black-list-search/src/main/resources/JVisualUnSoloThread.PNG)
 
 2. Tantos threads como núcleos de procesamiento. (4 núcleos)
 
     **Tiempo de ejecución:** 0m:18:95
 	
-	![](/src/main/resources/VariosThreadProcesador.PNG)
+	![](/black-list-search/src/main/resources/VariosThreadProcesador.PNG)
 
-	![](/src/main/resources/JVisualVariosThreadProcesador.PNG)
+	![](/black-list-search/src/main/resources/JVisualVariosThreadProcesador.PNG)
 
 3. Tantos threads como el doble de núcleos de procesamiento. (4 núcleos * 2 = 8)
 
 	**Tiempo de ejecución:** 0m:01:00
 	
-	![](/src/main/resources/VariosThreadProcesadorPor2.PNG)
+	![](/black-list-search/src/main/resources/VariosThreadProcesadorPor2.PNG)
 
-	![](/src/main/resources/JVisualVariosThreadProcesadorPor2.PNG)
+	![](/black-list-search/src/main/resources/JVisualVariosThreadProcesadorPor2.PNG)
 
 4. 50 threads
 
 	**Tiempo de ejecución:** 0m:01:00
 	
-	![](/src/main/resources/50Threads.PNG)
+	![](/black-list-search/src/main/resources/50Threads.PNG)
 
-	![](/src/main/resources/JVisual50Threads.PNG)
+	![](/black-list-search/src/main/resources/JVisual50Threads.PNG)
 
 5. 100 threads
 
 	**Tiempo de ejecución:** 0m:01:00
 	
-	![](/src/main/resources/100Threads.PNG)
+	![](/black-list-search/src/main/resources/100Threads.PNG)
 
-	![](/src/main/resources/JVisual100Threads.PNG)
+	![](/black-list-search/src/main/resources/JVisual100Threads.PNG)
 ---
 - Preguntas:
 
@@ -110,7 +110,7 @@ public class SearchThread extends Thread {
 	|         50        |  0,01  |
 	|        100        |  0,01  |
 	
-	![](/src/main/resources/nucleosVsTiempo.png)
+	![](/black-list-search/src/main/resources/nucleosVsTiempo.png)
 
 - Hay un límite cuando la fracción de mejora se acerca al 100%, es decir que lo que el tiempo que se mejora es casi la porción total del programa. Al mismo tiempo, entre mas se aumente el número de procesadores (en este caso de threads), entonces también va a existir un límite al infinito, pues la fracción se reduce a 0. Es por esta razón, que no hay mucha diferencia entre el rendimiento entre 200 threads y 500 threads, pues según la **Ley de Amdahl** ambos valores por ser tan grandes, hacen que el resultado de la "aceleración" tienda al infinito.
 - Según la tabla y gráfica anteriores, podemos ver que en nuestro caso se usaron primero 4 threads (pues es procesador de 4 núcleos) y tuvo un tiempo de ejecución mayor que cuando duplicamos la cantidad de threads. Aunque el cambio en el tiempo fue pequeño, se logró ver que mejoró y encontró el host en las listas negras más rápido.
