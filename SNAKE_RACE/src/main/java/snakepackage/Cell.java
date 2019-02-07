@@ -29,7 +29,9 @@ public class Cell {
 	/** turbo_boost - Se Celula preenchida por um turbo-boost */
 	private boolean turbo_boost;
 
-	private boolean barrier;
+	private boolean barrier;	
+
+	private boolean enEsperaPorCelda = false;
 
 	/**
 	 * Verifica se Celula tem turbo_boost.
@@ -146,8 +148,21 @@ public class Cell {
 	 *
 	 * @param full
 	 */
-	public void setFull(boolean full) {
+	public synchronized void setFull(boolean full) {
+		System.out.println(full);
 		this.full = full;
+		
+	}
+	
+	public synchronized void ponerEnEspera() {
+		try {
+			while(full) {
+				this.wait();	
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		this.notifyAll();
 	}
 
 	/*
@@ -159,52 +174,14 @@ public class Cell {
 	}
 
 	/**
-	 * Reserva celula.
-	 * 
-	 * Verifica se cobra tem saltos, se tiver saltos ultrapassa ignora
-	 * barreiras/cobras e atravessa Verifica se foi contra uma outra cobra/barreira
-	 * - se for verdade fica em wait() at� essa celula ser libertada por outra
-	 * thread.
-	 * 
-	 *
-	 * @param numero de salto-ao-eixo
-	 * @param idt    - Id da cobra
-	 * @return o numero de salto-ao-eixo restante.
-	 */
-	public synchronized int reserveCell(int jumps, int idSnake) {
-		boolean usedJump = false;
-		if (this.full == true)
-			usedJump = true;
-		if (jumps == 0) {
-			try {
-				while (this.full == true) {
-
-					System.out.println("[" + idSnake + "] " + "I'm going to wait - FULL");
-
-					wait();
-
-				}
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		}
-
-		this.full = true;
-		notifyAll();
-
-		if (usedJump == true && jumps > 0)
-			jumps--;
-		return jumps;
-
-	}
-
-	/**
 	 * Liberta celula ( ultimo elemento da cobra liberta esta celula para poder ser
 	 * ocupada por outras )
 	 */
 	public synchronized void freeCell() {
+		//this.notifyAll();
 		full = false;
-		notifyAll();
+		this.notifyAll();
+				
 	}
 
 	/**
@@ -213,7 +190,7 @@ public class Cell {
 	 * @return true,
 	 */
 	public boolean hasElements() {
-		if (this.full == true || this.food == true || this.jump_pad == true || this.turbo_boost == true) {
+		if (this.full == true || this.food == true || this.jump_pad == true) {
 			return true;
 		}
 		return false;
@@ -226,5 +203,13 @@ public class Cell {
 	public void setBarrier(boolean barrier) {
 		this.barrier = barrier;
 	}
-
+	
+	public boolean getEnEsperaPorCelda() {
+		return enEsperaPorCelda;
+	}
+	
+	public void setEnEsperaPorCelda(boolean enEsperaPorCelda) {
+		this.enEsperaPorCelda = enEsperaPorCelda;
+	}
+	
 }

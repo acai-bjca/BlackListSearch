@@ -118,14 +118,17 @@ public class SearchThread extends Thread {
 
 # Snake Race
 ## Parte 3
-1. Analizamos el código de cómo se mueven las serpientes de manera automática y encontramos que para realizar esto se crean nuevas celdas con las nuevas posiciones de la cabeza y el cuerpo de las serpientes; si no se presionan los botones del mouse, entonces se generan movimientos aleatorios con ayuda de la clase enum **Direction**, pero si se presiona algún botón, la ubicación de la celda donde se presionó se convierte en un objetivo y la serpiente se dirigirá hacia este.
+1. Analizamos el código de cómo se mueven las serpientes de manera automática y encontramos que para realizar esto se crean nuevas celdas con las nuevas posiciones de la cabeza y el cuerpo de las serpientes, cambiando de forma aleatoria su dirección con ayuda de la clase enum **Direction**.
 
-	![](/snake-race-thread-concurrency/src/resources/funcionamientoSnakes1.PNG)
+	![](/SNAKE_RACE/src/main/resources/funcionamientoSnakes1.PNG)
 
-	![](/snake-race-thread-concurrency/src/resources/funcionamientoSnakes2.png)
+	![](/SNAKE_RACE/src/main/resources/funcionamientoSnakes2.png)
+
+	![](/SNAKE_RACE/src/main/resources/funcionamientoSnakes3.png)
 2. Las siguientes son imágenes que representan las excepciones encontradas en el programa por problemas de concurrencia con la variable **snakeBody** que es una LinkedList.
 
-	![](/snake-race-thread-concurrency/src/resources/excepcionEncontrada.PNG)
+	![](/SNAKE_RACE/src/main/resources/excepcionEncontrada.PNG)
 
-	![](/snake-race-thread-concurrency/src/resources/excepcionEncontrada2.PNG)
+
+	![](/SNAKE_RACE/src/main/resources/excepcionEncontrada2.PNG)
 3.

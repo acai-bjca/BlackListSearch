@@ -1,6 +1,6 @@
 package enums;
 
-public class Grid_Size {
+public class GridSize {
 
 	public static final int HEIGH_BOX = 20;
 	public static final int WIDTH_BOX = 20;

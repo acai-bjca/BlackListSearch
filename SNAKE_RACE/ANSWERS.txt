@@ -1,3 +1,6 @@
+PARTE 3
+
+PUNTO 2
 1. Posibles condiciones de carrera:
 	- Cuando dos serpientes compiten por llegar a la misma celda, ya sea que contenga comida, barrera, 
 	un poder (que esté llena o que se encuentren dos serpientes) o esté vacía.
@@ -8,5 +11,10 @@
 	Algo para ayudar a esto es: 
 		List list = Collections.synchronizedList(new ArrayList());
 		List list = Collections.synchronizedList(new LinkedList());
-3. 
+3. No encontramos esperas activas incorrectas. Las dos que se encuentran permiten:
+	a. Revisar si hay alguna serpiente que siga viva. Si no hay ninguna, termina el juego.
+	b. Mantiene moviendo a la serpiente si está viva. En otro caso, termina con su movimiento.
 	
+PUNTO 3
+Posibles soluciones para las condiciones de carrera:
+	-  
