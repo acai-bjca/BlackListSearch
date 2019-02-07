@@ -240,34 +240,6 @@ public class Snake extends Observable implements Runnable {
 
 	private Cell changeDirection(Cell newCell) {
 		// Avoid out of bounds
-		/*
-		 * LinkedList<Cell> libres = new LinkedList<Cell>(); if(checkIfOwnBody(newCell))
-		 * { if (head.getX()>newCell.getX()) { newCell.setX(head.getX()+1);
-		 * if(!checkIfOwnBody(newCell)) libres.add(newCell);
-		 * newCell.setY(head.getY()-1); if(!checkIfOwnBody(newCell))
-		 * libres.add(newCell); newCell.setY(head.getY()+1);
-		 * if(!checkIfOwnBody(newCell)) libres.add(newCell);
-		 * 
-		 * }else if(head.getX()<newCell.getX()) { newCell.setX(head.getX()-1);
-		 * if(!checkIfOwnBody(newCell)) libres.add(newCell);
-		 * newCell.setY(head.getY()-1); if(!checkIfOwnBody(newCell))
-		 * libres.add(newCell); newCell.setY(head.getY()+1);
-		 * if(!checkIfOwnBody(newCell)) libres.add(newCell);
-		 * 
-		 * }else if(head.getY()<newCell.getX()) { newCell.setY(head.getY()-1);
-		 * if(!checkIfOwnBody(newCell)) libres.add(newCell);
-		 * newCell.setX(head.getX()-1); if(!checkIfOwnBody(newCell))
-		 * libres.add(newCell); newCell.setX(head.getX()+1);
-		 * if(!checkIfOwnBody(newCell)) libres.add(newCell); }else {
-		 * newCell.setY(head.getY()+1); if(!checkIfOwnBody(newCell))
-		 * libres.add(newCell); newCell.setX(head.getX()-1);
-		 * if(!checkIfOwnBody(newCell)) libres.add(newCell);
-		 * newCell.setX(head.getX()+1); if(!checkIfOwnBody(newCell))
-		 * libres.add(newCell); } System.out.println(libres.size()); Random aleatorio =
-		 * new Random(); int num = aleatorio.nextInt(2);
-		 * 
-		 * newCell = libres.get(num); }
-		 */
 		while (direction == Direction.UP && (newCell.getY() - 1) < 0) {
 			if ((head.getX() - 1) < 0) {
 				this.direction = Direction.RIGHT;

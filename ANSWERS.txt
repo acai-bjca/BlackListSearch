@@ -17,4 +17,6 @@ PUNTO 2
 	
 PUNTO 3
 Posibles soluciones para las condiciones de carrera:
-	-  
+	- Si una serpiente intenta acceder a la misma celda que otra serpiente, la celda debería ser un objeto sincronizado, de manera que si alguien
+	accede a esta, cualquiera que también intente acceder quede en espera hasta que la celda se libere. Para eso usariamos wait() y notify().
+	- Otra solución es mediante la implementación de listas concurrentes, lo que permitiría que varias serpientes no accedan a la misma celda.

@@ -1,0 +1,6 @@
+Integrantes:
+- Amalia Alfonso
+- Carlos Medina
+
+Link: (en este repositorio se encuentran todos los proyectos usados)
+https://github.com/acai-bjca/BlackListSearch
